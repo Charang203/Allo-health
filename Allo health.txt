@@ -1,0 +1,48 @@
+import React from 'react'
+import QueueManagement from './App/QueueManagement'
+import AvailableDoctors from './App/AvailableDoctors'
+import AppointmentCalendar from './App/AppointmentCalendar'
+import AppointmentList from './App/AppointmentList'
+import ScheduleAppointmentForm from './App/ScheduleAppointmentForm'
+
+
+;
+
+function App() {
+  return (
+    <div>
+       <AvailableDoctors 
+        doctors={[
+          { name: "Dr. Smith", specialty: "General Practice", status: "Available", next: "Now" },
+          { name: "Dr. Johnson", specialty: "Pediatrics", status: "Busy", next: "2:30 PM" },
+          { name: "Dr. Lee", specialty: "Cardiology", status: "Off Duty", next: "Tomorrow 9:00 AM" },
+          { name: "Dr. Patel", specialty: "Dermatology", status: "Available", next: "Now" }
+        ]}
+      />
+      <AppointmentCalendar monthLabel="December 2024" selectedDay={27} />
+      <AppointmentList 
+        appointments={[
+          { id: 1, patient: "Alice Brown", doctor: "Dr. Smith", time: "10:00 AM", status: "Booked" },
+          { id: 2, patient: "Charlie Davis", doctor: "Dr. Johnson", time: "11:30 AM", status: "Booked" },
+          { id: 3, patient: "Eva White", doctor: "Dr. Lee", time: "2:00 PM", status: "Booked" }
+        ]}
+      />
+      <ScheduleAppointmentForm
+        doctors={["Dr. Smith", "Dr. Johnson", "Dr. Lee"]}
+        onSchedule={(data) => console.log("Scheduled appointment:", data)}
+      />
+     
+      <QueueManagement
+        items={[
+          { id: 1, name: "John Doe", arrival: "09:30 AM", wait: "15 min", status: "Waiting" },
+          { id: 2, name: "Jane Smith", arrival: "09:45 AM", wait: "0 min", status: "With Doctor" },
+          { id: 3, name: "Bob Johnson", arrival: "10:00 AM", wait: "5 min", status: "Waiting", urgent: true }
+        ]}
+      />
+      
+    </div>
+  )
+}
+
+
+export default App
